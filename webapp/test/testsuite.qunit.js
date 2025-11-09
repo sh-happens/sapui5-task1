@@ -1,7 +1,7 @@
 sap.ui.define(() => {
     "use strict";
     return {
-        name: "QUnit test suite for UI5 Walkthrough",
+        name: "QUnit test suite for UI5 Walkthrough",   
         defaults: {
             page: "ui5://test-resources/ui5/walkthrough/Test.qunit.html?testsuite={suite}&test={name}",
             qunit: {
