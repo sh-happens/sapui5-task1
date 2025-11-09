@@ -14,18 +14,28 @@ sap.ui.define([
 			this.getView().setModel(oViewModel, "view");
 		},
 
-		onFilterInvoices(oEvent) {
-			// build filter array
-			const aFilter = [];
-			const sQuery = oEvent.getParameter("query");
+		_applyCombinedFilter() {
+			const sQuery = this.byId("searchField").getValue();
+			const sStatus = this.byId("statusComboBox").getSelectedKey();
+			const aFilters = [];
+
 			if (sQuery) {
-				aFilter.push(new Filter("ProductName", FilterOperator.Contains, sQuery));
+				aFilters.push(new Filter("ProductName", FilterOperator.Contains, sQuery));
+			}
+			if (sStatus && sStatus !== "All") {
+				aFilters.push(new Filter("Status", FilterOperator.EQ, sStatus));
 			}
 
-			// filter binding
 			const oList = this.byId("invoiceList");
-			const oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);
+			oList.getBinding("items").filter(aFilters);
+		},
+
+		onFilterInvoices() {
+			this._applyCombinedFilter();
+		},
+
+		onStatusFilterChange() {
+			this._applyCombinedFilter();
 		},
 		onPress(oEvent) {
 			const oItem = oEvent.getSource();
