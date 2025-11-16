@@ -9,8 +9,20 @@
                 <Title text="{i18n>invoiceListTitle}" />
                 <ToolbarSpacer />
                 <SearchField
+                    id="searchField"
                     width="50%"
+                    value="{view>/searchQuery}"
                     search=".onFilterInvoices" />
+                <ComboBox
+                    id="statusComboBox"
+                    selectedKey="{view>/selectedFilter}"
+                    items="{view>/statuses}"
+                    width="20%"
+                    selectionChange=".onStatusFilterChange">
+                    <items>
+                        <core:Item key="{view>key}" text="{view>text}" />
+                    </items>
+                </ComboBox>
             </Toolbar>
         </headerToolbar>
         <Table
@@ -24,15 +36,6 @@
 					group : true
 				}
 			}">
-            <headerToolbar>
-                <Toolbar>
-                    <Title text="{i18n>invoiceListTitle}" />
-                    <ToolbarSpacer />
-                    <SearchField
-                        width="50%"
-                        search=".onFilterInvoices" />
-                </Toolbar>
-            </headerToolbar>
             <columns>
                 <Column
                     hAlign="End"
