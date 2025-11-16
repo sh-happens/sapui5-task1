@@ -11,17 +11,16 @@
                 <SearchField
                     id="searchField"
                     width="50%"
+                    value="{view>/searchQuery}"
                     search=".onFilterInvoices" />
                 <ComboBox
                     id="statusComboBox"
-                    selectedKey="All"
+                    selectedKey="{view>/selectedFilter}"
+                    items="{view>/statuses}"
                     width="20%"
                     selectionChange=".onStatusFilterChange">
                     <items>
-                        <core:Item key="All" text="All" />
-                        <core:Item key="A" text="{i18n>invoiceStatusA}" />
-                        <core:Item key="B" text="{i18n>invoiceStatusB}" />
-                        <core:Item key="C" text="{i18n>invoiceStatusC}" />
+                        <core:Item key="{view>key}" text="{view>text}" />
                     </items>
                 </ComboBox>
             </Toolbar>
